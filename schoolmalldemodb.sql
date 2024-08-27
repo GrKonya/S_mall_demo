@@ -15,6 +15,7 @@
 */
 create database if not exists `schoolmalldemodb`;
 USE schoolmalldemodb;
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -22,6 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- Table structure for address
 -- ----------------------------
 DROP TABLE IF EXISTS `address`;
+
 CREATE TABLE `address`  (
   `address_areaId` char(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `address_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -3960,7 +3962,7 @@ INSERT INTO `product` VALUES (96, '正版 黑魂系列 全套7册 黑暗之魂�
 -- ----------------------------
 DROP TABLE IF EXISTS `productImage`;
 DROP TABLE IF EXISTS `productimage`;
-CREATE TABLE `productImage`  (
+CREATE TABLE `productimage`  (
   `productimage_id` int(10) NOT NULL AUTO_INCREMENT,
   `productimage_type` tinyint(1) UNSIGNED NOT NULL,
   `productimage_src` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -3973,7 +3975,7 @@ CREATE TABLE `productImage`  (
 -- ----------------------------
 -- Records of productimage
 -- ----------------------------
-INSERT INTO `productImage` VALUES (1, 0, 'e95d4a9d-ebe9-4f12-975b-2e94e98aa2ef.jpg', 1);
+INSERT INTO `productimage` VALUES (1, 0, 'e95d4a9d-ebe9-4f12-975b-2e94e98aa2ef.jpg', 1);
 INSERT INTO `productimage` VALUES (2, 0, '643b7e4a-cbaf-444d-afca-ebd4654a775e.jpg', 1);
 INSERT INTO `productimage` VALUES (3, 0, '55665514-1521-4092-b6c0-af4425a4b82c.jpg', 1);
 INSERT INTO `productimage` VALUES (4, 0, '70fc3539-4b80-49b0-a4d9-85835ad4c044.jpg', 1);

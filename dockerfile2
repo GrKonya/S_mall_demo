@@ -2,7 +2,7 @@
 FROM mysql:8.0
 
 # 环境变量
-ENV MYSQL_ROOT_PASSWORD=LDQ930446lyx
+ENV MYSQL_ROOT_PASSWORD=TaoDuoDuo123
 ENV MYSQL_DATABASE=schoolmalldemodb
 
 WORKDIR /docker-entrypoint-initdb.d
