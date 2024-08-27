@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-slim
+FROM registry.cn-hangzhou.aliyuncs.com/taoduoduo/openjdk:8-jdk-slim
 
 WORKDIR /app
 
