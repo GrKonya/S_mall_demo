@@ -24,7 +24,7 @@ public class BaseController {
     }
 
     //检查用户是否登录
-    protected Object checkUser(HttpSession session){
+    public Object checkUser(HttpSession session){
         Object o = session.getAttribute("userId");
         if(o==null){
             logger.info("用户未登录");

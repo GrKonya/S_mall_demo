@@ -70,42 +70,45 @@ OrderController extends BaseController{
     public String goToDetailsPage(HttpSession session, Map<String, Object> map, @PathVariable Integer oid/* 订单ID */) {
         logger.info("获取order_id为{}的订单信息",oid);
         ProductOrder order = productOrderService.get(oid);
-        logger.info("获取订单详情-地址信息");
-        Address address = addressService.get(order.getProductOrder_address().getAddress_areaId());
-        Stack<String> addressStack = new Stack<>();
-        //详细地址
-        addressStack.push(order.getProductOrder_detail_address());
-        //最后一级地址
-        addressStack.push(address.getAddress_name() + " ");
-        //如果不是第一级地址，循环拼接地址信息
-        while (!address.getAddress_areaId().equals(address.getAddress_regionId().getAddress_areaId())) {
-            address = addressService.get(address.getAddress_regionId().getAddress_areaId());
+        if(order.getProductOrder_address() != null) {
+            logger.info("获取订单详情-地址信息");
+            Address address = addressService.get(order.getProductOrder_address().getAddress_areaId());
+
+            Stack<String> addressStack = new Stack<>();
+            //详细地址
+            addressStack.push(order.getProductOrder_detail_address());
+            //最后一级地址
             addressStack.push(address.getAddress_name() + " ");
-        }
-        StringBuilder builder = new StringBuilder();
-        while (!addressStack.empty()) {
-            builder.append(addressStack.pop());
-        }
-        logger.info("订单地址字符串：{}", builder);
-        order.setProductOrder_detail_address(builder.toString());
-        logger.info("获取订单详情-用户信息");
-        order.setProductOrder_user(userService.get(order.getProductOrder_user().getUser_id()));
-        logger.info("获取订单详情-订单项信息");
-        List<ProductOrderItem> productOrderItemList = productOrderItemService.getListByOrderId(oid, null);
-        if (productOrderItemList != null) {
-            logger.info("获取订单详情-订单项对应的产品信息");
-            for (ProductOrderItem productOrderItem : productOrderItemList) {
-                Integer productId = productOrderItem.getProductOrderItem_product().getProduct_id();
-                logger.info("获取产品ID为{}的产品信息", productId);
-                Product product = productService.get(productId);
-                if (product != null) {
-                    logger.info("获取产品ID为{}的第一张预览图片信息", productId);
-                    product.setSingleProductImageList(productImageService.getList(productId, (byte) 0, new PageUtil(0, 1)));
-                }
-                productOrderItem.setProductOrderItem_product(product);
+            //如果不是第一级地址，循环拼接地址信息
+            while (!address.getAddress_areaId().equals(address.getAddress_regionId().getAddress_areaId())) {
+                address = addressService.get(address.getAddress_regionId().getAddress_areaId());
+                addressStack.push(address.getAddress_name() + " ");
             }
+            StringBuilder builder = new StringBuilder();
+            while (!addressStack.empty()) {
+                builder.append(addressStack.pop());
+            }
+            logger.info("订单地址字符串：{}", builder);
+            order.setProductOrder_detail_address(builder.toString());
+            logger.info("获取订单详情-用户信息");
+            order.setProductOrder_user(userService.get(order.getProductOrder_user().getUser_id()));
+            logger.info("获取订单详情-订单项信息");
+            List<ProductOrderItem> productOrderItemList = productOrderItemService.getListByOrderId(oid, null);
+            if (productOrderItemList != null) {
+                logger.info("获取订单详情-订单项对应的产品信息");
+                for (ProductOrderItem productOrderItem : productOrderItemList) {
+                    Integer productId = productOrderItem.getProductOrderItem_product().getProduct_id();
+                    logger.info("获取产品ID为{}的产品信息", productId);
+                    Product product = productService.get(productId);
+                    if (product != null) {
+                        logger.info("获取产品ID为{}的第一张预览图片信息", productId);
+                        product.setSingleProductImageList(productImageService.getList(productId, (byte) 0, new PageUtil(0, 1)));
+                    }
+                    productOrderItem.setProductOrderItem_product(product);
+                }
+            }
+            order.setProductOrderItemList(productOrderItemList);
         }
-        order.setProductOrderItemList(productOrderItemList);
         map.put("order", order);
         logger.info("转到后台管理-订单详情页-ajax方式");
         return "admin/include/orderDetails";

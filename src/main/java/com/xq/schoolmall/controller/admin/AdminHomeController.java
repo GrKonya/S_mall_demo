@@ -129,7 +129,7 @@ public class AdminHomeController extends BaseController {
      * @return 图表数据的JSON对象
      * @throws ParseException 转换异常
      */
-    private JSONObject getChartData(Date beginDate,Date endDate,int days) throws ParseException {
+    protected JSONObject getChartData(Date beginDate, Date endDate, int days) throws ParseException {
         JSONObject jsonObject = new JSONObject();
         SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
         SimpleDateFormat time2 = new SimpleDateFormat("MM/dd", Locale.UK);

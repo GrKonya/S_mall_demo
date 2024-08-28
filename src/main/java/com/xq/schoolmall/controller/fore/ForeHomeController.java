@@ -25,7 +25,6 @@ import java.util.Map;
 
 /**
  * 主页
- * @author 贤趣项目小组
  */
 @Controller
 public class ForeHomeController extends BaseController {
@@ -91,7 +90,7 @@ public class ForeHomeController extends BaseController {
     @RequestMapping(value = "product/nav/{category_id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     public String getProductByNav(@PathVariable("category_id") Integer category_id) {
         JSONObject object = new JSONObject();
-        if (category_id == null) {
+        if (category_id == null || category_id == 99999) {
             object.put("success", false);
             return object.toJSONString();
         }
@@ -100,6 +99,7 @@ public class ForeHomeController extends BaseController {
                 new Product().setProduct_category(new Category().setCategory_id(category_id)),
                 new PageUtil(0, 40)
         );
+
         List<List<Product>> complexProductList = new ArrayList<>(8);
         List<Product> products = new ArrayList<>(5);
         for (int i = 0; i < productList.size(); i++) {

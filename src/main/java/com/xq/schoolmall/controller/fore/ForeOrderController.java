@@ -23,7 +23,6 @@ import java.util.*;
 
 /**
  * 订单列表页
- * @author 贤趣项目小组
  */
 @Controller
 public class ForeOrderController extends BaseController {
@@ -437,8 +436,16 @@ public class ForeOrderController extends BaseController {
         addressStack.push(order.getProductOrder_detail_address());
         //最后一级地址
         addressStack.push(address.getAddress_name() + " ");
+
+        int maxIterations = 10;
+        int iteration = 0;
+
         //如果不是第一级地址
         while (!address.getAddress_areaId().equals(address.getAddress_regionId().getAddress_areaId())) {
+            if (iteration++ > maxIterations) {
+                logger.warn("达到最大迭代次数，停止地址解析，可能存在循环引用问题");
+                break;
+            }
             address = addressService.get(address.getAddress_regionId().getAddress_areaId());
             addressStack.push(address.getAddress_name() + " ");
         }

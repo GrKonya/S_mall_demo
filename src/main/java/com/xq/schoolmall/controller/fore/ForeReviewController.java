@@ -17,7 +17,6 @@ import java.util.Map;
 
 /**
  * 评论信息管理
- * @author 贤趣项目小组
  */
 @Controller
 public class ForeReviewController extends BaseController {
@@ -157,7 +156,9 @@ public class ForeReviewController extends BaseController {
         List<Review> reviewList = reviewService.getListByProductId(product_id, new PageUtil(index, 10));
         if (reviewList != null) {
             for (Review review : reviewList) {
-                review.setReview_user(userService.get(review.getReview_user().getUser_id()));
+                if (review.getReview_user() != null && review.getReview_user().getUser_id() != null) {
+                    review.setReview_user(userService.get(review.getReview_user().getUser_id()));
+                }
             }
         }
         Integer total = reviewService.getTotalByProductId(product_id);

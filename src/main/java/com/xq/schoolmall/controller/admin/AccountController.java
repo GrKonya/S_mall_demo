@@ -19,7 +19,6 @@ import java.util.UUID;
 
 /**
  * 后台管理-账户页
- * @author 贤趣项目小组
  */
 @Controller
 public class AccountController extends BaseController{
@@ -55,35 +54,6 @@ public class AccountController extends BaseController{
             logger.info("登录信息已清除，返回管理员登陆页");
         }
         return "redirect:/admin/login";
-    }
-
-    //管理员头像上传
-    @ResponseBody
-    @RequestMapping(value = "admin/uploadAdminHeadImage", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public String uploadAdminHeadImage(@RequestParam MultipartFile file, HttpSession session) {
-        String originalFileName = file.getOriginalFilename();
-        logger.info("获取图片原始文件名：{}", originalFileName);
-        assert originalFileName != null;
-        String extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
-        //生成随机名
-        String fileName = UUID.randomUUID() + extension;
-        //获取上传路径
-        String filePath = session.getServletContext().getRealPath("/") + "res/images/item/adminProfilePicture/" + fileName;
-
-        logger.info("文件上传路径：{}", filePath);
-        JSONObject jsonObject = new JSONObject();
-        try {
-            logger.info("文件上传中...");
-            file.transferTo(new File(filePath));
-            logger.info("文件上传成功！");
-            jsonObject.put("success", true);
-            jsonObject.put("fileName", fileName);
-        } catch (IOException e) {
-            logger.warn("文件上传失败！");
-            e.printStackTrace();
-            jsonObject.put("success", false);
-        }
-        return jsonObject.toJSONString();
     }
 
     //更新管理员信息
