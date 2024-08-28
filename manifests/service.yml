@@ -3,16 +3,15 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type: internet
-    service.beta.kubernetes.io/alibaba-cloud-loadbalancer-instance-charge-type: PayByCLCU
+    service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners: 'true'
+    service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id: lb-2zeas45cm88tybxu2bj0x
     service.beta.kubernetes.io/alibaba-cloud-loadbalancer-ip-version: ipv4
-    service.beta.kubernetes.io/alibaba-cloud-loadbalancer-name: schoolmall-clb
-    service.beta.kubernetes.io/alibaba-cloud-loadbalancer-scheduler: rr
-  creationTimestamp: '2024-08-27T02:32:28Z'
+  creationTimestamp: '2024-08-28T03:48:18Z'
   finalizers:
     - service.k8s.alibaba/resources
   labels:
-    service.beta.kubernetes.io/hash: a73ecb8dcfe89e2e99695deaea7ff007ab945798454b678942a3071b
-    service.k8s.alibaba/loadbalancer-id: lb-2ze2wz09c03e6leus5jc7
+    service.beta.kubernetes.io/hash: 3a6625f24ea38d4853232d313291eade64b7493837479f474976ba41
+    service.k8s.alibaba/loadbalancer-id: lb-2zeas45cm88tybxu2bj0x
   managedFields:
     - apiVersion: v1
       fieldsType: FieldsV1
@@ -21,17 +20,16 @@ metadata:
           'f:annotations':
             .: {}
             'f:service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type': {}
-            'f:service.beta.kubernetes.io/alibaba-cloud-loadbalancer-instance-charge-type': {}
+            'f:service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners': {}
+            'f:service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id': {}
             'f:service.beta.kubernetes.io/alibaba-cloud-loadbalancer-ip-version': {}
-            'f:service.beta.kubernetes.io/alibaba-cloud-loadbalancer-name': {}
-            'f:service.beta.kubernetes.io/alibaba-cloud-loadbalancer-scheduler': {}
         'f:spec':
           'f:allocateLoadBalancerNodePorts': {}
           'f:externalTrafficPolicy': {}
           'f:internalTrafficPolicy': {}
           'f:ports':
             .: {}
-            'k:{"port":8080,"protocol":"TCP"}':
+            'k:{"port":80,"protocol":"TCP"}':
               .: {}
               'f:port': {}
               'f:protocol': {}
@@ -41,7 +39,7 @@ metadata:
           'f:type': {}
       manager: ACK-Console Apache-HttpClient
       operation: Update
-      time: '2024-08-27T02:32:28Z'
+      time: '2024-08-28T03:48:18Z'
     - apiVersion: v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -51,7 +49,7 @@ metadata:
             'v:"service.k8s.alibaba/resources"': {}
       manager: cloud-controller-manager
       operation: Update
-      time: '2024-08-27T02:32:28Z'
+      time: '2024-08-28T03:48:18Z'
     - apiVersion: v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -66,25 +64,25 @@ metadata:
       manager: cloud-controller-manager
       operation: Update
       subresource: status
-      time: '2024-08-27T02:32:40Z'
-  name: schoolmall
+      time: '2024-08-28T03:48:24Z'
+  name: schoolmall-service
   namespace: default
-  resourceVersion: '268131'
-  uid: ec37128a-d5e8-43b1-9e6f-584eea836898
+  resourceVersion: '562636'
+  uid: ce6b3aad-6215-45fa-864f-6a08b0e105d6
 spec:
   allocateLoadBalancerNodePorts: true
-  clusterIP: 10.0.103.184
+  clusterIP: 10.0.181.73
   clusterIPs:
-    - 10.0.103.184
+    - 10.0.181.73
   externalTrafficPolicy: Local
-  healthCheckNodePort: 30196
+  healthCheckNodePort: 32039
   internalTrafficPolicy: Cluster
   ipFamilies:
     - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-    - nodePort: 30862
-      port: 8080
+    - nodePort: 32641
+      port: 80
       protocol: TCP
       targetPort: 8080
   selector:
@@ -94,5 +92,5 @@ spec:
 status:
   loadBalancer:
     ingress:
-      - ip: 47.93.120.242
+      - ip: 8.141.22.2
         ipMode: VIP
