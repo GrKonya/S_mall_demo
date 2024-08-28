@@ -3,16 +3,26 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/alibaba-cloud-loadbalancer-address-type: internet
-    service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners: 'true'
+    service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners: 'false'
     service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id: lb-2zeas45cm88tybxu2bj0x
     service.beta.kubernetes.io/alibaba-cloud-loadbalancer-ip-version: ipv4
-  creationTimestamp: '2024-08-28T03:48:18Z'
+  creationTimestamp: '2024-08-28T04:28:43Z'
   finalizers:
     - service.k8s.alibaba/resources
   labels:
-    service.beta.kubernetes.io/hash: 3a6625f24ea38d4853232d313291eade64b7493837479f474976ba41
+    service.beta.kubernetes.io/hash: 8b7719841a78612b7ebba643a816b8dd237e72f5c0d6af51f347fc81
     service.k8s.alibaba/loadbalancer-id: lb-2zeas45cm88tybxu2bj0x
   managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:finalizers':
+            .: {}
+            'v:"service.k8s.alibaba/resources"': {}
+      manager: cloud-controller-manager
+      operation: Update
+      time: '2024-08-28T04:28:44Z'
     - apiVersion: v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -39,17 +49,7 @@ metadata:
           'f:type': {}
       manager: ACK-Console Apache-HttpClient
       operation: Update
-      time: '2024-08-28T03:48:18Z'
-    - apiVersion: v1
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:finalizers':
-            .: {}
-            'v:"service.k8s.alibaba/resources"': {}
-      manager: cloud-controller-manager
-      operation: Update
-      time: '2024-08-28T03:48:18Z'
+      time: '2024-08-28T05:06:22Z'
     - apiVersion: v1
       fieldsType: FieldsV1
       fieldsV1:
@@ -64,24 +64,24 @@ metadata:
       manager: cloud-controller-manager
       operation: Update
       subresource: status
-      time: '2024-08-28T03:48:24Z'
+      time: '2024-08-28T05:06:24Z'
   name: schoolmall-service
   namespace: default
-  resourceVersion: '562636'
-  uid: ce6b3aad-6215-45fa-864f-6a08b0e105d6
+  resourceVersion: '578201'
+  uid: 3910cab5-e7c2-4828-b8b8-f30b2b23b06a
 spec:
   allocateLoadBalancerNodePorts: true
-  clusterIP: 10.0.181.73
+  clusterIP: 10.0.118.195
   clusterIPs:
-    - 10.0.181.73
+    - 10.0.118.195
   externalTrafficPolicy: Local
-  healthCheckNodePort: 32039
+  healthCheckNodePort: 31248
   internalTrafficPolicy: Cluster
   ipFamilies:
     - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-    - nodePort: 32641
+    - nodePort: 30112
       port: 80
       protocol: TCP
       targetPort: 8080
