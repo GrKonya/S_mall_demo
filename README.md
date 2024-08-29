@@ -2,8 +2,12 @@
 
 ### 部署方式
 1. 项目数据库为MySQL 5.7版本，
-3. 使用IDEA打开项目后，在maven面板刷新项目，下载依赖包。
-4. 配置数据库连接并启动SpringBootApplication即可。
+
+2. 使用IDEA打开项目后，在maven面板刷新项目，下载依赖包。
+
+3. 配置数据库连接并启动SpringBootApplication即可。
+
+   
 
 ### 项目默认运行地址
 <http://localhost:8080/schoolmall>
