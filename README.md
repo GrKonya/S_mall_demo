@@ -7,7 +7,6 @@
 
 3. 配置数据库连接并启动SpringBootApplication即可。
 
-   
 
 ### 项目默认运行地址
 <http://localhost:8080/schoolmall>

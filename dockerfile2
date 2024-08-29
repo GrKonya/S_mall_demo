@@ -11,4 +11,6 @@ WORKDIR /docker-entrypoint-initdb.d
 # 这个目录会在容器启动时自动执行其中的 SQL 文件
 COPY schoolmalldemodb.sql /docker-entrypoint-initdb.d/
 
+
 EXPOSE 3306
+
